@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Vivify testing</title>
+    <style type="text/css">
+        .box{ position:absolute; width:50px; height:50px; top:10px; background-color: red;
+
+            -webkit-transform: translate3d(0, 0, 0); 
+            -moz-transform: translate3d(0, 0, 0); 
+            -ms-transform: translate3d(0, 0, 0); 
+            transform: translate3d(0, 0, 0);
+            -webkit-backface-visibility: hidden;
+            -webkit-perspective:1000px;
+        }
+        #box1{  left:10%; }
+        #box3{ left:80%;  }
+
+        #box1, #box3{
+            -webkit-transform: translateX(0) translateY(0); 
+            -moz-transform: translateX(0) translateY(0);  
+            -ms-transform: translateX(0) translateY(0);  
+        }
+
+        #box2{  left:45%; 
+            -webkit-transform: rotate(0) scale(0.5); 
+            -moz-transform: rotate(0) scale(0.5); 
+            -ms-transform: rotate(0) scale(0.5); 
+        }
+        
+    </style>
+</head>
+<body>
+<div class="box" id="box1"></div>
+
+<div class="box" id="box2"></div>
+
+<div class="box" id="box3"></div>
+
+<script src="../src/js/vivify.js"></script>
+<script>
+
+//animation 1
+z = $v("#box1", "#box3")
+
+.animate({
+    "transform": "translateX(0) translateY(500px)",
+    "background-color":"blue"
+},{
+    duration: 1000,
+    easing: "ease-in-out"
+})
+
+.animate({
+    "transform": "translateX(0) translateY(0)",
+    "background-color":"red"
+},{
+    duration: 1000,
+    easing: "ease-in-out"
+})
+
+.begin({
+    loop: "infinite"
+});
+
+
+//animation 2
+var a = $v(document.querySelector("#box2"))
+
+.animate({
+    "top":"500px",
+    "background-color": "gray",
+    "transform": "rotate(0) scale(1)",
+},{
+    duration: 1000,
+    easing: "ease-in-out",
+})
+
+.animate({
+    "transform": "rotate(1440deg) scale(1)",
+    "background-color": "green",
+},{
+    duration: 3000,
+    delay: 100,
+    easing: "ease-in-out"
+})
+
+.animate({
+    "transform": "rotate(1440deg) scale(2)",
+    "background-color": "orange",
+},{
+    duration: 200,
+    easing: "ease-in-out"
+})
+
+
+.animate({
+    "transform": "rotate(1440deg) scale(1)",
+    "background-color": "black",
+    "border-radius":"25px"
+},{
+    duration: 200,
+    easing: "ease-in-out"
+})
+
+
+.animate({
+    "top":"10px",
+    "transform": "rotate(0) scale(0.5)",
+    "background-color": "red",
+    "border-radius":"0"
+},{
+    duration: 3000,
+    delay: 500,
+    easing: "ease-in-out"
+})
+
+.begin({
+    loop: "infinite"
+});
+
+
+
+// setTimeout(function(){
+//     a.override({
+//         "left":"150%"
+//     },{
+//         duration: 1000
+//     });
+
+// }, 500);
+
+
+
+
+</script>
+</body>
+</html>
